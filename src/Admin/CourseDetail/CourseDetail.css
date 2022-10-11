@@ -1,0 +1,22 @@
+.edit-btn{
+    padding: 0% 4%;
+    border: none;
+    background-color: #90EE91;
+    color: aliceblue;
+}
+.delete-btn{
+    padding: 0% 4%;
+    border: none;
+    background-color: #dc1c13;
+    color: aliceblue;
+    margin-left: 5px;
+}
+.chapter-image{
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+}
+.read-more{
+    cursor: pointer;
+    text-decoration: none;
+}
