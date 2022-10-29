@@ -36,7 +36,7 @@ const Sidebar = ({children}) => {
           
     const menuItem=[
         {
-            path:"/",
+            path:"",
             name:"Home",
             icon:<FaHome/>
         },
@@ -95,6 +95,12 @@ const Sidebar = ({children}) => {
             name:"Home",
             icon:<FaHome/>
         },
+        
+        {
+            path:"/course",
+            name:"Course",
+            icon:<FontAwesomeIcon icon={faBookAtlas} />
+        },
         token?
         {
         path:"/login",
@@ -113,11 +119,6 @@ const Sidebar = ({children}) => {
             path:"/",
             name:"Home",
             icon:<FaHome/>
-        },
-        {
-            path:"/course",
-            name:"Course",
-            icon:<FontAwesomeIcon icon={faBookAtlas} />
         },
         {
             path:"/login",
@@ -154,7 +155,7 @@ const Sidebar = ({children}) => {
                  </div>
                  </div>
                {
-                  isAdmin?
+                  isAdmin &&
                   <>
                   {
                     menuItem.map((item, index)=>(
@@ -164,10 +165,24 @@ const Sidebar = ({children}) => {
                         </NavLink>
                     ))
                   }
-                   </>:
-                   
+                   </>
+
+                }
+                { 
+                   token ?
                    <>
                   {
+                    generalMenuWithToken.map((item, index)=>(
+                        <NavLink to={item.path} key={index} className="link" activeclassName="active">
+                            <div className="icon">{item.icon}</div>
+                            <div style={{display: isOpen ? "block" : "none"}} className="link_text">{item.name}</div>
+                        </NavLink>
+                    ))
+                   }
+                   </>
+                   :
+                   <>
+                   {
                     generalMenuWithOutToken.map((item, index)=>(
                         <NavLink to={item.path} key={index} className="link" activeclassName="active">
                             <div className="icon">{item.icon}</div>

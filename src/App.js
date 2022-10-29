@@ -23,6 +23,8 @@ function App() {
     <Sidebar>
       <Routes>
        <Route  path="/" element={<Main/>} />
+       <Route path="/course" element={<Course/>} />
+       <Route path="/course/:id" element={<ChapterScreen/>} />
        <Route path="/chapters" element={<Chapters/>} />
        <Route path="/makecourse" element={<MakeCourse/>} />
        <Route path="/dashboard" element={<Dashboard/>} />
@@ -40,8 +42,6 @@ function App() {
      <Sidebar>
        <Routes>
        <Route  path="/" element={<Main/>} />
-       <Route path="/course" element={<Course/>} />
-       <Route path="/course/:id" element={<ChapterScreen/>} />
        <Route  path="/login" element={<Login/>} />
       </Routes>
    </Sidebar>
