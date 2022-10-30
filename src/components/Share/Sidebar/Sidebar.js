@@ -35,13 +35,12 @@ const Sidebar = ({children}) => {
           }
           
     const menuItem=[
-        {
-            path:"",
-            name:"Home",
-            icon:<FaHome/>
-        },
-       isAdmin &&
-       {
+    {
+        path:"/",
+        name:"Home",
+        icon:<FaHome/>
+    },
+    {
         path:"/dashboard",
         name:"Dashboard",
         icon:  <FontAwesomeIcon icon={faGripHorizontal} />
@@ -76,16 +75,9 @@ const Sidebar = ({children}) => {
         name:"Create Category",
         icon:  <FontAwesomeIcon icon={faCalendarAlt} />
     },
-    token?
     {
         path:"/login",
         name: <span onClick={logOut}>Logout</span>,
-        icon:  <FontAwesomeIcon icon={faArrowRightFromBracket} />
-    }
-    :
-    {
-        path:"/login",
-        name:"Login",
         icon:  <FontAwesomeIcon icon={faArrowRightFromBracket} />
     }
     ]
@@ -101,18 +93,11 @@ const Sidebar = ({children}) => {
             name:"Course",
             icon:<FontAwesomeIcon icon={faBookAtlas} />
         },
-        token?
         {
-        path:"/login",
-        name: <span onClick={logOut}>Logout</span>,
+            path:"/login",
+            name: <span onClick={logOut}>Logout</span>,
         icon:  <FontAwesomeIcon icon={faArrowRightFromBracket} />
         }
-    :
-    {
-        path:"/login",
-        name:"Login",
-        icon:  <FontAwesomeIcon icon={faArrowRightFromBracket} />
-    }
     ]
     const generalMenuWithOutToken = [
         {
@@ -166,21 +151,9 @@ const Sidebar = ({children}) => {
                     ))
                   }
                    </>
-
                 }
-                { 
-                   token ?
-                   <>
-                  {
-                    generalMenuWithToken.map((item, index)=>(
-                        <NavLink to={item.path} key={index} className="link" activeclassName="active">
-                            <div className="icon">{item.icon}</div>
-                            <div style={{display: isOpen ? "block" : "none"}} className="link_text">{item.name}</div>
-                        </NavLink>
-                    ))
-                   }
-                   </>
-                   :
+                {
+                    !token &&
                    <>
                    {
                     generalMenuWithOutToken.map((item, index)=>(
@@ -191,9 +164,20 @@ const Sidebar = ({children}) => {
                     ))
                    }
                    </>
-                 
-                   
-               }
+                }
+                {
+                   !isAdmin && token &&
+                   <>
+                   {
+                    generalMenuWithToken.map((item, index)=>(
+                        <NavLink to={item.path} key={index} className="link" activeclassName="active">
+                            <div className="icon">{item.icon}</div>
+                            <div style={{display: isOpen ? "block" : "none"}} className="link_text">{item.name}</div>
+                        </NavLink>
+                    ))
+                   }
+                   </>
+                }
            </div>
            <main style={{backgroundColor: admin ? "#FFFFFF" : "#E5E5E5"}}>{children}</main>
     </div>
